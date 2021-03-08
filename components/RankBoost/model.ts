@@ -1,22 +1,24 @@
-import {combine, createEvent, guard, restore} from 'effector';
+import {combine, createEvent, createStore, guard, merge, restore, sample} from 'effector';
 import {PlatformEnum} from './types';
+import {calcPrice} from "./utils";
+import {createGate} from "effector-react";
 
+export const Gate = createGate('RankBoostGate');
 export const fromRankChanged = createEvent<number>();
 export const toRankChanged = createEvent<number>();
 export const platformChanged = createEvent<PlatformEnum>();
+export const priceChanged = createEvent<number>()
 
 export const fromRank$ = restore(fromRankChanged, 200);
 export const toRank$ = restore(toRankChanged, 1200);
 export const platform$ = restore(platformChanged, PlatformEnum.PC);
+export const price$ = restore(priceChanged, 0)
 
 export const rankStore$ = combine({
     from: fromRank$,
     to: toRank$,
     platform: platform$,
-});
-
-guard(fromRankChanged, {
-    filter: (val) => val >= 0 && val <= 20000,
+    price: price$
 });
 
 fromRankChanged.watch((val) => {
@@ -25,8 +27,15 @@ fromRankChanged.watch((val) => {
     }
 });
 
-toRankChanged.watch((val) => {
-    if (val < rankStore$.getState().from) {
-        fromRankChanged(val);
-    }
-});
+sample({
+    clock: merge([fromRankChanged, toRankChanged, Gate.open]),
+    source: combine({
+        from: fromRank$,
+        to: toRank$,
+        platform: platform$
+    }),
+    fn: ({from, to, platform}) => calcPrice(from, to, platform),
+    target: priceChanged
+})
+
+// price$.watch(console.log)

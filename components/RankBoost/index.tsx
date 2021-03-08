@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './RankBoostCalc.module.scss';
 import {useStore} from 'effector-react';
-import {fromRankChanged, rankStore$, toRankChanged} from './model';
+import {fromRankChanged, Gate, rankStore$, toRankChanged} from './model';
 import {getDevisionString} from "./utils";
 
 const RankIcon: React.FC<{rank: number; width: number}> = ({rank, width}) => {
@@ -58,6 +58,7 @@ export const RankBoostCalc = () => {
 
     return (
         <div className={styles.container}>
+            <Gate />
             <div className={styles.rankContainer}>
                 <div className={styles.rank}>
                     <RankIcon rank={state.from} width={40} />
@@ -118,6 +119,8 @@ export const RankBoostCalc = () => {
                     </div>
                 </div>
             </div>
+
+            <h1>Price: {state.price}</h1>
         </div>
     );
 };
