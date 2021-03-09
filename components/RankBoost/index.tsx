@@ -1,8 +1,9 @@
 import React from 'react';
 import styles from './RankBoostCalc.module.scss';
 import {useStore} from 'effector-react';
-import {fromRankChanged, Gate, rankStore$, toRankChanged} from './model';
-import {getDevisionString} from "./utils";
+import {fromRankChanged, Gate, platformChanged, rankStore$, toRankChanged} from './model';
+import {getDevisionString} from './utils';
+import {PlatformEnum} from './types';
 
 const RankIcon: React.FC<{rank: number; width: number}> = ({rank, width}) => {
     const style = {width: `${width}px`, height: `${width}px`};
@@ -29,7 +30,7 @@ export const RankBoostCalc = () => {
             fromRankChanged(0);
             return;
         }
-        if (+ value < 0) {
+        if (+value < 0) {
             fromRankChanged(0);
             return;
         }
@@ -38,14 +39,14 @@ export const RankBoostCalc = () => {
             return;
         }
         fromRankChanged(+value);
-    }
+    };
 
     const toChanged = (value: string | number) => {
         if (isNaN(+value)) {
             toRankChanged(0);
             return;
         }
-        if (+ value < 0) {
+        if (+value < 0) {
             toRankChanged(0);
             return;
         }
@@ -54,11 +55,21 @@ export const RankBoostCalc = () => {
             return;
         }
         toRankChanged(+value);
-    }
+    };
 
     return (
         <div className={styles.container}>
             <Gate />
+            <div className={styles.platformSelector}>
+                <select
+                    value={state.platform}
+                    onChange={(e) => platformChanged(e.target.value as PlatformEnum)}
+                >
+                    <option value="PC">PC</option>
+                    <option value="PlayStation">PlayStation</option>
+                    <option value="XBOX">Xbox</option>
+                </select>
+            </div>
             <div className={styles.rankContainer}>
                 <div className={styles.rank}>
                     <RankIcon rank={state.from} width={40} />
@@ -74,7 +85,7 @@ export const RankBoostCalc = () => {
                             className={styles.rankInput}
                             type="text"
                             onChange={({target: {value}}) => {
-                                fromChanged(value)
+                                fromChanged(value);
                             }}
                             value={state.from}
                         />
@@ -103,7 +114,7 @@ export const RankBoostCalc = () => {
                             className={styles.rankInput}
                             type="text"
                             onChange={({target: {value}}) => {
-                                toChanged(value)
+                                toChanged(value);
                             }}
                             value={state.to}
                         />

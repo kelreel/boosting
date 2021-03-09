@@ -28,7 +28,7 @@ fromRankChanged.watch((val) => {
 });
 
 sample({
-    clock: merge([fromRankChanged, toRankChanged, Gate.open]),
+    clock: merge([fromRankChanged, toRankChanged, platformChanged, Gate.open]),
     source: combine({
         from: fromRank$,
         to: toRank$,

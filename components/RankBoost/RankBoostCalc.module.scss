@@ -41,10 +41,13 @@
     border-radius: 30px;
     background-color: #181818;
     color: #fff;
-
+    margin: 0 5px;
     outline: none;
 
-    margin: 0 5px;
+    &:focus {
+        box-shadow: 0 0 2px 2px gold;
+    }
+
 }
 
 .rankInputBtn {
@@ -56,13 +59,36 @@
     border-radius: 50%;
     background-color: #181818;
     color: #fff;
-    outline: none;
     cursor: pointer;
 
     transition: all 0.15s;
 
     &:hover {
         transform: scale(1.1);
+    }
+
+    &:focus {
+        outline: 1px solid gold;
+    }
+}
+
+.platformSelector {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+
+    select {
+        background-color: #181818;
+        color: #fff;
+        font-size: 1.05rem;
+        padding: 7px;
+        margin-bottom: 20px;
+
+        &:focus {
+            outline: 1px solid gold;
+        }
+
     }
 }
 
