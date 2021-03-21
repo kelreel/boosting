@@ -77,6 +77,7 @@ export const RankBoostCalc = () => {
                     <div className={styles.rankVal}>
                         <button
                             className={styles.rankInputBtn}
+                            data-cy="minus_cur_rank_btn"
                             onClick={() => fromChanged(state.from - 100)}
                         >
                             -
@@ -88,9 +89,11 @@ export const RankBoostCalc = () => {
                                 fromChanged(value);
                             }}
                             value={state.from}
+                            data-cy="division-from-input"
                         />
                         <button
                             className={styles.rankInputBtn}
+                            data-cy="plus_cur_rank_btn"
                             onClick={() => fromChanged(state.from + 100)}
                         >
                             +
@@ -106,6 +109,7 @@ export const RankBoostCalc = () => {
                     <div className={styles.rankVal}>
                         <button
                             className={styles.rankInputBtn}
+                            data-cy="minus_desired_rank_btn"
                             onClick={() => toChanged(state.to - 100)}
                         >
                             -
@@ -117,21 +121,23 @@ export const RankBoostCalc = () => {
                                 toChanged(value);
                             }}
                             value={state.to}
+                            data-cy="division-to-input"
                         />
                         <button
                             className={styles.rankInputBtn}
+                            data-cy="plus_desired_rank_btn"
                             onClick={() => toChanged(state.to + 100)}
                         >
                             +
                         </button>
                     </div>
                     <div className={styles.divisionBlock}>
-                        <p>{getDevisionString(state.to)}</p>
+                        <p data-cy="division-to-p">{getDevisionString(state.to)}</p>
                     </div>
                 </div>
             </div>
 
-            <h1>Price: {state.price}</h1>
+            <h1 data-cy="price-p">Price: {state.price}</h1>
         </div>
     );
 };

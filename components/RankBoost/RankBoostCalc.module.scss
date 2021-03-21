@@ -60,6 +60,7 @@
     background-color: #181818;
     color: #fff;
     cursor: pointer;
+    outline: none;
 
     transition: all 0.15s;
 
@@ -68,7 +69,7 @@
     }
 
     &:focus {
-        outline: 1px solid gold;
+        box-shadow: 0 0 2px 2px gold;
     }
 }
 

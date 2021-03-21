@@ -1,5 +1,6 @@
 import styles from './Header.module.scss'
 import Link from 'next/link'
+import {ROUTE} from "../routes";
 
 export default function Header () {
     return <header className={styles.header}>
@@ -7,13 +8,13 @@ export default function Header () {
         <nav  className={styles.navigation}>
             <ul>
                 <li>
-                    <Link href="/rank-boosting"><a>Rank boosting</a></Link>
+                    <Link href={ROUTE.RANK_BOOST}><a>Rank boosting</a></Link>
                 </li>
                 <li>
-                    <Link href="/kill-boosting"><a>Kill boosting</a></Link>
+                    <Link href={ROUTE.KILL_BOOST}><a>Kill boosting</a></Link>
                 </li>
                 <li>
-                    <Link href="/win-boosting"><a>Win boosting</a></Link>
+                    <Link href={ROUTE.WINS_BOOST}><a>Win boosting</a></Link>
                 </li>
             </ul>
         </nav>

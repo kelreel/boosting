@@ -40,7 +40,7 @@ export const getDevisionString = (val: number): string => {
             return `Diamond III`;
         case val >= 8600 && val < 9300:
             return `Diamond II`;
-        case val >= 9300 && val < 1000:
+        case val >= 9300 && val < 10000:
             return `Diamond I`;
         default:
             return `Master`;
