@@ -1,7 +1,7 @@
 export enum PlatformEnum {
     PC = 'PC',
     PS = 'PlayStation',
-    XBOX = "XBOX"
+    XBOX = 'XBOX',
 }
 
 export interface DivisionRate {
@@ -9,6 +9,6 @@ export interface DivisionRate {
     from: number;
     to: number;
     prices: {
-        [platform in PlatformEnum]?: number
-    }
+        [platform in PlatformEnum]?: number;
+    };
 }

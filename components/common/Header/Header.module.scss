@@ -1,49 +1,51 @@
 .header {
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
 
-  background-color: #000;
-  color: #fff;
+    background-color: #000;
+    color: #fff;
 }
 
 .logo {
-  text-align: center;
-  h1 {
+    text-align: center;
     color: gold;
-  }
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 2;
 }
 
 .navigation {
-  > ul {
-    display: flex;
-    flex-flow: row wrap;
-    margin-left: 0;
-    padding-left: 0;
+    > ul {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        margin-left: 0;
+        padding-left: 0;
 
-    li {
-      list-style-type: none;
-      transition: all 0.3s;
+        li {
+            list-style-type: none;
+            transition: all 0.3s;
 
-      &:hover {
-        transform: scale(1.1);
-        color: #dddddd;
-      }
+            &:hover {
+                transform: scale(1.1);
+                color: #dddddd;
+            }
 
-      + li {
-        margin-left: 15px;
-      }
+            + li {
+                margin-left: 15px;
+            }
 
-      a {
-        color: #fff;
-        text-decoration: none;
-        text-align: center;
+            a {
+                color: #fff;
+                text-decoration: none;
+                text-align: center;
 
-        &:hover {
-          color: #dddddd;
+                &:hover {
+                    color: #dddddd;
+                }
+            }
         }
-      }
     }
-  }
 }

@@ -5,7 +5,7 @@ import {RankBoostCalc} from '../components/RankBoost';
 
 export default function RankBoost() {
     return (
-        <div className="container">
+        <>
             <Head>
                 <title>Rank Boost</title>
                 <link rel="icon" href="/favicon.ico" />
@@ -16,6 +16,6 @@ export default function RankBoost() {
             <Page>
                 <RankBoostCalc />
             </Page>
-        </div>
+        </>
     );
 }

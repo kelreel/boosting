@@ -1,10 +1,10 @@
 import styles from './Header.module.scss'
 import Link from 'next/link'
-import {ROUTE} from "../routes";
+import { ROUTE } from '../../../core/routes'
 
 export default function Header () {
     return <header className={styles.header}>
-        <div className={styles.logo}><h1>Apex Boosting</h1></div>
+        <div className={styles.logo}>Apex Boosting</div>
         <nav  className={styles.navigation}>
             <ul>
                 <li>
