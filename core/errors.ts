@@ -1,11 +1,8 @@
 import {toast} from 'react-toastify';
+import {AxiosError} from 'axios';
 
-export interface RestError extends Error {
-    status?: number;
-    error?: string;
-}
-
-export function showRestError(error: RestError) {
+export function showRestError(error: AxiosError) {
+    let msg = error.response?.data?.message || error.response?.statusText || 'Unknown API error';
     console.error(error);
-    toast.error(`${error.error}`, {autoClose: false});
+    toast.error(`${msg}`, {autoClose: 3000, hideProgressBar: false});
 }

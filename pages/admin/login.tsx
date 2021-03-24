@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Page from "../../components/common/Page";
 import {Login} from "../../components/admin/Login";
+import AdminHeader from "../../components/admin/Header/AdminHeader";
 
 export default function RankBoost() {
     return (
@@ -10,7 +11,7 @@ export default function RankBoost() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            {/*<Header />*/}
+            <AdminHeader />
 
             <Page>
                 <Login />
