@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import {doLogin} from "../../../models/auth";
+import {doLogin} from "../../../../models/auth";
 
 export const Login = () => {
     const { register, handleSubmit } = useForm();

@@ -1,7 +1,7 @@
 import {combine, createEvent, merge, restore, sample} from 'effector';
-import {PlatformEnum} from './types';
 import {calcPrice} from './utils';
 import {createGate} from 'effector-react';
+import {PlatformEnum} from "../../../../types/ApexRank";
 
 export const Gate = createGate('RankBoostGate');
 export const fromRankChanged = createEvent<number>();

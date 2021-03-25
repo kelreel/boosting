@@ -1,7 +1,7 @@
 import Head from 'next/head';
-import Header from '../components/common/Header';
-import Page from '../components/common/Page';
-import {RankBoostCalc} from '../components/RankBoostPage';
+import Header from '../components/ui-kit/Header';
+import Page from '../components/ui-kit/Page';
+import {RankBoostCalc} from '../components/pages/landing/RankBoostPage';
 
 export default function RankBoost() {
     return (

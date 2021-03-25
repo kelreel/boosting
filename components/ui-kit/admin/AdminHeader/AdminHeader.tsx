@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './AdminHeader.module.scss';
 import {useStore} from 'effector-react';
-import {doLogout, isAuth$, sessionUser$} from '../../../models/auth';
+import {doLogout, isAuth$, sessionUser$} from '../../../../models/auth';
 import Link from 'next/link';
-import {ROUTE} from '../../../core/routes';
+import {ROUTE} from '../../../../core/routes';
 
 export default function AdminHeader() {
     const isAuth = useStore(isAuth$);

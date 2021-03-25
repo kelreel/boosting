@@ -1,9 +1,9 @@
 import styles from './RankBoostCalc.module.scss';
 import {fromRankChanged, platformChanged, rankStore$, toRankChanged} from '../model';
-import {PlatformEnum} from '../types';
 import {getDevisionString} from '../utils';
 import React from 'react';
 import {useStore} from 'effector-react';
+import { PlatformEnum } from '../../../../../types/ApexRank';
 
 const RankIcon: React.FC<{rank: number; width: number}> = ({rank, width}) => {
     const style = {width: `${width}px`, height: `${width}px`};

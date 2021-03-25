@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Header from "../components/common/Header";
+import Header from "../components/ui-kit/Header";
 
 export default function Home() {
   return (

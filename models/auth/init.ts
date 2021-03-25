@@ -1,6 +1,5 @@
 import {forward} from "effector";
 import {AppGate, authInitFx, doLogin, doLogout, loginFx, logoutFx, sessionUser$} from "./index";
-import {RestError, showRestError} from "../../core/errors";
 
 sessionUser$
     .on(authInitFx.doneData, (state, data) => data)

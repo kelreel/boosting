@@ -1,4 +1,4 @@
-import {DivisionRate, PlatformEnum} from './types';
+import { DivisionRate, PlatformEnum } from "../../../../types/ApexRank";
 
 export const getDevisionString = (val: number): string => {
     switch (true) {

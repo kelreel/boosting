@@ -1,7 +1,7 @@
 import Head from "next/head";
-import Page from "../../components/common/Page";
-import {Login} from "../../components/admin/Login";
-import AdminHeader from "../../components/admin/Header/AdminHeader";
+import Page from "../../components/ui-kit/Page";
+import {Login} from "../../components/pages/admin/Login";
+import AdminHeader from "../../components/ui-kit/admin/AdminHeader/AdminHeader";
 
 export default function RankBoost() {
     return (
