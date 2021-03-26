@@ -6,7 +6,7 @@ const numberFormatter = new Intl.NumberFormat('ru-RU', {
 const numberFormatterWithCurrency = (maximumFractionDigits = 2) =>
     new Intl.NumberFormat('ru-RU', {
         style: 'currency',
-        currency: 'RUB',
+        currency: 'USD',
         minimumFractionDigits: 0,
         maximumFractionDigits,
     });

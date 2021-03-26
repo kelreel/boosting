@@ -2,10 +2,12 @@ import React from "react";
 import {useTable} from 'react-table';
 import Pagination from "react-js-pagination";
 import styles from './Table.module.scss';
+import classnames from 'classnames';
 
 interface Props {
     columns: any[],
     data: any[],
+    isLoading?: boolean;
     pagination?: {
         page: number;
         totalCount: number;
@@ -15,7 +17,7 @@ interface Props {
     }
 }
 
-export default function Table({columns, data, pagination}: Props) {
+export default function Table({columns, data, pagination, isLoading}: Props) {
     // Use the state and functions returned from useTable to build your UI
     const {getTableProps, getTableBodyProps, headerGroups, rows, prepareRow} = useTable({
         columns,
@@ -26,10 +28,15 @@ export default function Table({columns, data, pagination}: Props) {
         pagination.onPageChange(page);
     }
 
+    let classNames = classnames({ [styles.wait]: isLoading });
+
     // Render the UI for your table
     return (
         <div className={styles.container}>
-            <table {...getTableProps()}>
+            {isLoading && <div className={styles.loading}>
+                <h4>Loading...</h4>
+            </div>}
+            <table className={classNames} {...getTableProps()}>
                 <thead>
                 {headerGroups.map((headerGroup) => (
                     <tr {...headerGroup.getHeaderGroupProps()}>

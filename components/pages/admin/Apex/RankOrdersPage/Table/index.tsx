@@ -3,6 +3,7 @@ import { useStore } from 'effector-react';
 import React from 'react';
 import {useTable} from 'react-table';
 import { Gate, pageChanged, pageSizeChanged, state$ } from '../model';
+import {formatNumber} from "core/formatters";
 
 const columns = [
     {
@@ -19,14 +20,23 @@ const columns = [
     {
         Header: 'Price',
         accessor: 'price',
+        Cell: ({row: {original}}) => {
+            return formatNumber(original.price, true, 2)
+        }
     },
     {
         Header: 'From rank',
         accessor: 'fromRank',
+        Cell: ({row: {original}}) => {
+            return formatNumber(original.fromRank)
+        }
     },
     {
         Header: 'To rank',
         accessor: 'toRank',
+        Cell: ({row: {original}}) => {
+            return formatNumber(original.toRank)
+        }
     },
     {
         Header: 'Platform',
@@ -67,7 +77,7 @@ export default function OrdersTable() {
     return (
         <>
             <Gate />
-            <Table data={data} columns={columns} pagination={pagination} />
+            <Table data={data} columns={columns} pagination={pagination} isLoading={isLoading} />
         </>
     );
 }
