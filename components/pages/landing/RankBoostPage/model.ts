@@ -1,8 +1,9 @@
 import {combine, createEffect, createEvent, merge, restore, sample} from 'effector';
 import {calcPrice} from './utils';
 import {createGate} from 'effector-react';
-import {ApexRankOrderRaw, CreateRankOrderRequest, ApexPlatformEnum, ApexRegionEnum} from "types/Apex";
+import {CreateRankOrderRequest, ApexPlatformEnum, ApexRegionEnum, ApexRankOrderDetails} from "types/Apex";
 import {createRankOrder} from "api/landing/Apex";
+import {OrderDocument} from "types/orders";
 
 export const Gate = createGate('RankBoostGate');
 export const fromRankChanged = createEvent<number>();
@@ -14,7 +15,7 @@ export const emailChanged = createEvent<string>();
 export const streamingChanged = createEvent<boolean>();
 export const createOrder = createEvent();
 
-export const createOrderFx = createEffect<CreateRankOrderRequest, ApexRankOrderRaw>();
+export const createOrderFx = createEffect<CreateRankOrderRequest, OrderDocument<ApexRankOrderDetails>>();
 createOrderFx.use(createRankOrder);
 
 export const fromRank$ = restore(fromRankChanged, 200);

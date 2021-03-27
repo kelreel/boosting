@@ -1,14 +1,15 @@
 import {combine, createDomain, createEffect, merge, sample} from 'effector';
 import {createGate} from 'effector-react';
 import {createTableModel} from 'core/hooks/table';
-import {ApexRankOrderRaw, ApexRankOrdersAdminRequest} from 'types/Apex';
+import {ApexRankOrdersAdminRequest} from 'types/Apex';
 import {PaginationContent} from 'types/api';
 import {fetchApexRankOrders} from 'api/admin/orders';
+import {OrderDocument} from "types/orders";
 
-const domain = createDomain('AdminApexRankOrdersDomain');
+const domain = createDomain('OrdersDomain');
 
 export const Gate = createGate('AdminApexRankOrdersGate');
-const fetchDataFx = createEffect<ApexRankOrdersAdminRequest, PaginationContent<ApexRankOrderRaw>>({
+const fetchDataFx = createEffect<ApexRankOrdersAdminRequest, PaginationContent<OrderDocument<any>>>({
     handler: fetchApexRankOrders,
 });
 
@@ -17,7 +18,7 @@ export const {page$, pageChanged, pageSize$, pageSizeChanged} = createTableModel
     defaultPageSize: 10,
 });
 
-export const data$ = domain.createStore<ApexRankOrderRaw[]>([]);
+export const data$ = domain.createStore<OrderDocument<any>[]>([]);
 export const totalCount$ = domain.createStore<number>(0);
 export const totalPages$ = domain.createStore<number>(1);
 
