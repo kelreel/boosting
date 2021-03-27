@@ -1,6 +1,13 @@
 export enum ROUTE {
     HOME = '/',
-    RANK_BOOST = '/rank-boosting',
-    KILL_BOOST = '/kill-boosting',
-    WINS_BOOST = '/win-boosting'
+    APEX = '/apex',
+    RANK_BOOST = '/apex/rank-boost',
+    KILL_BOOST = '/apex/kill-boost',
+    ACHIEVEMENTS = '/apex/achievements-boost',
+    ORDER = '/apex/order'
+}
+
+export enum ADMIN_ROUTE {
+    LOGIN = '/admin/login',
+    ORDERS = '/admin/orders'
 }

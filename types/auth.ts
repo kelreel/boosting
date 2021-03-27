@@ -12,7 +12,8 @@ export interface AuthData {
 export enum UserRole {
     admin = "admin",
     manager = "manager",
-    booster = "booster"
+    booster = "booster",
+    suspended = "suspended"
 }
 
 export interface AuthRequest {

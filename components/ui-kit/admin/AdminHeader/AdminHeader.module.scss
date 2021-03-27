@@ -5,6 +5,16 @@
 
     background-color: #000;
     color: #fff;
+
+    a {
+        color: #fff;
+        text-decoration: none;
+        text-align: center;
+
+        &:hover {
+            color: #dddddd;
+        }
+    }
 }
 
 .main {
@@ -58,16 +68,6 @@
 
             + li {
                 margin-left: 15px;
-            }
-
-            a {
-                color: #fff;
-                text-decoration: none;
-                text-align: center;
-
-                &:hover {
-                    color: #dddddd;
-                }
             }
         }
     }

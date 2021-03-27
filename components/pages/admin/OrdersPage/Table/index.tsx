@@ -25,22 +25,12 @@ const columns = [
         }
     },
     {
-        Header: 'From rank',
-        accessor: 'fromRank',
-        Cell: ({row: {original}}) => {
-            return formatNumber(original.fromRank)
-        }
+        Header: 'Game',
+        accessor: 'game',
     },
     {
-        Header: 'To rank',
-        accessor: 'toRank',
-        Cell: ({row: {original}}) => {
-            return formatNumber(original.toRank)
-        }
-    },
-    {
-        Header: 'Platform',
-        accessor: 'platform',
+        Header: 'Order Type',
+        accessor: 'orderType',
     },
     {
         Header: 'Date',
@@ -60,11 +50,6 @@ export default function OrdersTable() {
         pageSize,
         isLoading
     } = useStore(state$);
-
-    const {getTableProps, getTableBodyProps, headerGroups, rows, prepareRow} = useTable({
-        columns,
-        data,
-    });
 
     const pagination = {
         page,

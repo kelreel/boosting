@@ -1,9 +1,9 @@
 import styles from './RankBoostCalc.module.scss';
-import {fromRankChanged, platformChanged, rankStore$, toRankChanged} from '../model';
+import {fromRankChanged, platformChanged, rankStore$, regionChanged, toRankChanged} from '../model';
 import {getDevisionString} from '../utils';
 import React from 'react';
 import {useStore} from 'effector-react';
-import { PlatformEnum } from '../../../../../types/ApexRank';
+import {PlatformEnum, RegionEnum} from 'types/Apex';
 
 const RankIcon: React.FC<{rank: number; width: number}> = ({rank, width}) => {
     const style = {width: `${width}px`, height: `${width}px`};
@@ -67,6 +67,7 @@ export const RankBoostCalculator = () => {
                 <select
                     value={state.platform}
                     onChange={(e) => platformChanged(e.target.value as PlatformEnum)}
+                    data-cy="platform-selector"
                 >
                     <option value="PC">PC</option>
                     <option value="PlayStation">PlayStation</option>
@@ -138,6 +139,19 @@ export const RankBoostCalculator = () => {
                         <p data-cy="division-to-p">{getDevisionString(state.to)}</p>
                     </div>
                 </div>
+            </div>
+            <div className={styles.platformSelector}>
+                <p className={styles.label}>Region</p>
+                <select
+                    value={state.region}
+                    onChange={(e) => regionChanged(e.target.value as RegionEnum)}
+                    data-cy="region-selector"
+                >
+                    <option value="Americas">Americas</option>
+                    <option value="Europe">Europe</option>
+                    <option value="Asia">Asia</option>
+                    <option value="Oceania">Oceania</option>
+                </select>
             </div>
         </div>
     );

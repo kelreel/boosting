@@ -1,9 +1,9 @@
 import Head from "next/head";
+import Page from "components/ui-kit/Page";
 import {Login} from "components/pages/admin/Login";
 import AdminHeader from "components/ui-kit/admin/AdminHeader/AdminHeader";
-import Page from "components/ui-kit/Page";
 
-export default function LoginPage() {
+export default function AdminIndex() {
     return (
         <>
             <Head>

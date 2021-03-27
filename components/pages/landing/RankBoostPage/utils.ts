@@ -1,4 +1,4 @@
-import { DivisionRate, PlatformEnum } from "../../../../types/ApexRank";
+import { DivisionRate, ApexPlatformEnum as PlatformEnum } from "types/Apex";
 
 export const getDevisionString = (val: number): string => {
     switch (true) {
@@ -120,7 +120,7 @@ export const rates: DivisionRate[] = [
     },
 ];
 
-export const calcPrice = (from: number, to: number, platform: PlatformEnum): number => {
+export const calcPrice = (from: number, to: number, platform: PlatformEnum, streaming: boolean): number => {
     let price = 0;
     let cur_rate = from;
 
@@ -137,9 +137,12 @@ export const calcPrice = (from: number, to: number, platform: PlatformEnum): num
             // console.log('***', step_price * (rate.to - cur_rate))
             price += step_price * (rate.to - cur_rate);
             cur_rate = rate.to;
-        }0
+        };
         // console.log(price)
     })
+
+    if (streaming) price *= 1.12;
+
     if (price < 0) return 0;
     return Math.round(price * 100) / 100
 };

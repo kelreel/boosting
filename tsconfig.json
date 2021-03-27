@@ -22,7 +22,8 @@
       "components/*": ["components/*"],
       "types/*": ["types/*"],
       "core/*": ["core/*"],
-      "models/*": ["models/*"]
+      "models/*": ["models/*"],
+      "api/*": ["api/*"]
     }
   },
   "include": [

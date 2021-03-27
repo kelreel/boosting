@@ -1,7 +1,7 @@
 import {createEffect, createEvent, createStore} from 'effector';
-import {AuthData, AuthRequest} from '../../types/auth';
-import {fetchAuthInfo} from '../../api/admin/auth';
-import {TokenStorage} from '../../core/tokenStorage';
+import {AuthData, AuthRequest} from 'types/auth';
+import {fetchAuthInfo} from 'api/admin/auth';
+import {TokenStorage} from 'core/tokenStorage';
 import {createGate} from 'effector-react';
 import jwt_decode from 'jwt-decode';
 
@@ -14,7 +14,12 @@ export const logoutFx = createEffect<void, void>();
 logoutFx.use(TokenStorage.removeToken);
 
 export const authInitFx = createEffect(() => {
-    return jwt_decode(TokenStorage.token) as AuthData;
+    const current_time = Date.now() / 1000;
+    const data = jwt_decode(TokenStorage.token) as AuthData & {exp: number};
+    if ( data.exp < current_time) {
+        throw 'Auth token expired, please, login.'
+    }
+    return data;
 });
 
 export const doLogin = createEvent<{login: string; password: string}>();

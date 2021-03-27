@@ -1,6 +1,6 @@
-import {apiClient} from '../../core/apiClient';
-import {TokenStorage} from '../../core/tokenStorage';
-import {AuthData, AuthRequest, AuthResponse} from '../../types/auth';
+import {apiClient} from 'core/apiClient';
+import {TokenStorage} from 'core/tokenStorage';
+import {AuthData, AuthRequest, AuthResponse} from 'types/auth';
 import jwt_decode from 'jwt-decode';
 
 export async function fetchAuthInfo({login, password}: AuthRequest): Promise<AuthData> {

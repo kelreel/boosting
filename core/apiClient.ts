@@ -1,13 +1,16 @@
-import axios, {AxiosError, AxiosRequestConfig, AxiosResponse} from "axios";
-import {showRestError} from "./errors";
-import {TokenStorage} from "./tokenStorage";
+import axios, {AxiosError, AxiosRequestConfig, AxiosResponse} from 'axios';
+import {showRestError} from './errors';
+import {TokenStorage} from './tokenStorage';
 
-const baseURL = 'http://localhost:3010/api'
+const baseURL =
+    process.env.NODE_ENV === 'production'
+        ? 'https://api.mega-boosting.com/api'
+        : 'http://localhost:3010/api';
 
 export const apiClient = axios.create({baseURL});
 
 async function onErrorInterceptor(e: AxiosError): Promise<AxiosResponse> {
-    showRestError(e)
+    showRestError(e);
     throw e;
 }
 
