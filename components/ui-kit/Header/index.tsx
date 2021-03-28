@@ -4,7 +4,9 @@ import { ROUTE } from 'core/routes'
 
 export default function Header () {
     return <header className={styles.header}>
-        <div className={styles.logo}>Apex Boosting</div>
+        <div className={styles.logo}>
+            <Link href={ROUTE.HOME}><a>Mega Boosting</a></Link>
+        </div>
         <nav  className={styles.navigation}>
             <ul>
                 <li>

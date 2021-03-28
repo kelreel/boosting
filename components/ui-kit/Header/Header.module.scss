@@ -10,10 +10,18 @@
 
 .logo {
     text-align: center;
-    color: gold;
     font-size: 32px;
     font-weight: 700;
     line-height: 2;
+
+    a {
+        color: gold;
+        text-decoration: none;
+        text-align: center;
+        &:hover {
+            color: #c4b100;
+        }
+    }
 }
 
 .navigation {
