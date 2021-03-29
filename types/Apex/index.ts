@@ -7,7 +7,7 @@ export interface DivisionRate {
     };
 }
 
-export interface ApexRankOrdersAdminRequest {
+export interface FetchOrdersAdminRequest {
     page: number;
     pageSize: number;
 }

@@ -4,7 +4,7 @@ import {useStore} from 'effector-react';
 import {setAccount, state$} from 'components/pages/order/model';
 import {useForm} from 'react-hook-form';
 
-export const Credentials = () => {
+export const AdminOrderCredentials = () => {
     const {order} = useStore(state$);
     const {register, handleSubmit} = useForm();
     const [show, setShow] = useState(false);

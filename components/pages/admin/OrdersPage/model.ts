@@ -1,16 +1,16 @@
 import {combine, createDomain, createEffect, merge, sample} from 'effector';
 import {createGate} from 'effector-react';
 import {createTableModel} from 'core/hooks/table';
-import {ApexRankOrdersAdminRequest} from 'types/Apex';
 import {PaginationContent} from 'types/api';
-import {fetchApexRankOrders} from 'api/admin/orders';
-import {OrderDocument} from "types/orders";
+import {fetchOrders} from 'api/admin/orders';
+import {OrderDocument} from 'types/orders';
+import {FetchOrdersAdminRequest} from 'types/Apex';
 
 const domain = createDomain('OrdersDomain');
 
 export const Gate = createGate('AdminApexRankOrdersGate');
-const fetchDataFx = createEffect<ApexRankOrdersAdminRequest, PaginationContent<OrderDocument<any>>>({
-    handler: fetchApexRankOrders,
+const fetchDataFx = createEffect<FetchOrdersAdminRequest, PaginationContent<OrderDocument<any>>>({
+    handler: fetchOrders,
 });
 
 export const {page$, pageChanged, pageSize$, pageSizeChanged} = createTableModel({

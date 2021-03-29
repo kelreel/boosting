@@ -3,8 +3,10 @@ import Header from 'components/ui-kit/Header';
 import Page from 'components/ui-kit/Page';
 import {OrderPage} from "components/pages/order";
 import {useRouter} from "next/router";
+import AdminHeader from "components/ui-kit/admin/AdminHeader/AdminHeader";
+import {AdminOrderPage} from "components/pages/admin/AdminOrderPage";
 
-export default function LandingOrderPage() {
+export default function OrderPageAdmin() {
     const router = useRouter()
     const { id } = router.query
     return (
@@ -14,10 +16,10 @@ export default function LandingOrderPage() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <Header />
+            <AdminHeader />
 
             <Page>
-                <OrderPage id={id as string} />
+                <AdminOrderPage id={id as string} />
             </Page>
         </>
     );

@@ -20,3 +20,9 @@ export type OrderDocument<D> = {
     createdAt: Date;
     updatedAt: Date;
 };
+
+export type ChatMessage = {
+    from: String,
+    message: String,
+    date: Date;
+}
