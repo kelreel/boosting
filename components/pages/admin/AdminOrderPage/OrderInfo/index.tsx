@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Common.module.scss';
 import {useStore} from 'effector-react';
-import {state$} from 'components/pages/order/model';
+import {state$} from 'components/pages/admin/AdminOrderPage/model';
 import {RankIcon} from 'components/pages/landing/RankBoostPage/rankIcon';
 import {ApexOrderTypeEnum, ApexRankOrderDetails} from 'types/Apex';
 

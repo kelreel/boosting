@@ -4,13 +4,14 @@ import React from 'react';
 import {useTable} from 'react-table';
 import { Gate, pageChanged, pageSizeChanged, state$ } from '../model';
 import {formatNumber} from "core/formatters";
+import Link from 'next/link';
 
 const columns = [
     {
         Header: 'ID',
         accessor: '_id',
         Cell: ({row: {original}}) => {
-            return original._id
+            return <Link href={`/admin/orders/${original._id}`}>{original._id.toUpperCase()}</Link>
         }
     },
     {

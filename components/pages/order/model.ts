@@ -18,7 +18,7 @@ export const OrderGate = createGate<{id: string}>();
 const fetchOrderFx = createEffect<{id: string}, OrderDocument<any>>();
 fetchOrderFx.use(fetchOrder);
 
-const fetchMessagesFx = createEffect<{id: string}, ChatMessage[]>();
+export const fetchMessagesFx = createEffect<{id: string}, ChatMessage[]>();
 fetchMessagesFx.use(fetchMessages);
 
 const setCredentialsFx = createEffect<{id: string; email: string; password: string}, any>();
@@ -88,7 +88,18 @@ setCredentialsFx.doneData.watch(() =>
     toast.success(`Account data saved`, {autoClose: 3000, hideProgressBar: false}),
 );
 
-messages$.on(fetchMessagesFx.doneData, (_, val) => val).reset(OrderGate.close);
+messages$.on(fetchMessagesFx.doneData, (state, payload) => {
+    if (
+        state.filter((msg) => msg.from !== 'Customer').length !==
+        payload.filter((msg) => msg.from !== 'Customer').length &&
+        state.length !== 0
+    ) {
+        console.log('play!');
+        const audio = new Audio('/audio/message.mp3');
+        audio.play();
+    }
+    return payload;
+}).reset(OrderGate.close);
 
 order$.watch(console.log);
 // OrderGate.state.watch(console.log)

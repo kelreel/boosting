@@ -1,7 +1,7 @@
 import React, {useEffect, useRef} from 'react';
 import styles from './Chat.module.scss';
 import {useStore} from 'effector-react';
-import {sendChatMessage, state$} from 'components/pages/order/model';
+import {fetchMessagesFx, sendChatMessage, state$} from 'components/pages/order/model';
 import {useForm} from 'react-hook-form';
 
 export const Chat = () => {
@@ -19,6 +19,13 @@ export const Chat = () => {
         lastMsgRef.current.scrollIntoView({behavior: 'smooth'});
     },[state.messages])
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+            fetchMessagesFx({id: state.order._id});
+        }, 3000);
+        return () => clearInterval(interval);
+    }, []);
+
     return (
         <div className={styles.container}>
             <div className={styles.heading}>Chat</div>
@@ -27,6 +34,7 @@ export const Chat = () => {
                     if (msg.from === 'Customer') {
                         return (
                             <div key={index} className={styles.msgOut}>
+                                <div className={styles.from}>{new Date(msg.date).toLocaleTimeString()}</div>
                                 <div className={styles.message}>
                                     {msg.message}
                                 </div>
@@ -35,6 +43,7 @@ export const Chat = () => {
                     } else {
                         return (
                             <div key={index} className={styles.msgIn}>
+                                <div className={styles.from}>{msg.from}, {new Date(msg.date).toLocaleTimeString()}</div>
                                 <div className={styles.message}>
                                     {msg.message}
                                 </div>

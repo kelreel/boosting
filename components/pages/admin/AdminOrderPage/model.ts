@@ -10,85 +10,79 @@ import {
 } from 'effector';
 import {createGate} from 'effector-react';
 import {ChatMessage, OrderDocument} from 'types/orders';
-import {fetchMessages, fetchOrder, sendMessage, setCredentials} from 'api/landing/order';
-import {toast} from 'react-toastify';
+import {fetchAdminOrder, fetchChatAdminMessages, sendChatAdminMessage} from 'api/admin/orders';
 
-export const OrderGate = createGate<{id: string}>();
+export const AdminOrderGate = createGate<{id: string}>();
 
-const fetchOrderFx = createEffect<{id: string}, OrderDocument<any>>();
-fetchOrderFx.use(fetchOrder);
+const fetchAdminOrderFx = createEffect<{id: string}, OrderDocument<any>>();
+fetchAdminOrderFx.use(fetchAdminOrder);
 
-const fetchMessagesFx = createEffect<{id: string}, ChatMessage[]>();
-fetchMessagesFx.use(fetchMessages);
+export const fetchAdminMessagesFx = createEffect<{id: string}, ChatMessage[]>();
+fetchAdminMessagesFx.use(fetchChatAdminMessages);
 
-const setCredentialsFx = createEffect<{id: string; email: string; password: string}, any>();
-setCredentialsFx.use(setCredentials);
-
-const sendMessageFx = createEffect<{id: string; message: string}, any>();
-sendMessageFx.use(sendMessage);
+const sendAdminMessageFx = createEffect<{id: string; message: string}, any>();
+sendAdminMessageFx.use(sendChatAdminMessage);
 
 const orderChanged = createEvent<OrderDocument<any> | null>();
 export const order$ = restore(orderChanged, null);
 
-// const messagesChanged = createEvent<ChatMessage[]>();
 const messages$ = createStore<ChatMessage[]>([]);
 
-export const setAccount = createEvent<{id: string; email: string; password: string}>();
+// export const setAccount = createEvent<{id: string; email: string; password: string}>();
 export const sendChatMessage = createEvent<{id: string; message: string}>();
 
 export const state$ = combine({
     order: order$,
     messages: messages$,
-    orderLoading: fetchOrderFx.pending,
-    credentialsLoading: setCredentialsFx.pending,
-    sendMessageLoading: sendMessageFx.pending,
-    fetchChatLoading: fetchMessagesFx.pending,
+    orderLoading: fetchAdminOrderFx.pending,
+    sendMessageLoading: sendAdminMessageFx.pending,
+    fetchChatLoading: fetchAdminMessagesFx.pending,
 });
 
 guard({
-    source: OrderGate.state,
+    source: AdminOrderGate.state,
     filter: ({id}) => !!id,
-    target: fetchOrderFx,
+    target: fetchAdminOrderFx,
 });
 
 guard({
-    source: OrderGate.state,
+    source: AdminOrderGate.state,
     filter: ({id}) => !!id,
-    target: fetchMessagesFx,
-});
-
-forward({
-    from: setAccount,
-    to: setCredentialsFx,
+    target: fetchAdminMessagesFx,
 });
 
 forward({
     from: sendChatMessage,
-    to: sendMessageFx,
+    to: sendAdminMessageFx,
 });
 
 sample({
-    clock: sendMessageFx.doneData,
-    source: OrderGate.state,
+    clock: sendAdminMessageFx.doneData,
+    source: AdminOrderGate.state,
     fn: (state) => ({id: state.id}),
-    target: fetchMessagesFx
-})
+    target: fetchAdminMessagesFx,
+});
 
-// upd order after set credentials
-// sample({
-//     clock: setCredentialsFx.doneData,
-//     source: OrderGate.state,
-//     fn: (state) => ({id: state.id}),
-//     target: fetchOrderFx
-// })
+order$.on(fetchAdminOrderFx.doneData, (_, order) => order).reset(AdminOrderGate.close);
 
-order$.on(fetchOrderFx.doneData, (_, order) => order).reset(OrderGate.close);
+// setCredentialsFx.doneData.watch(() =>
+//     toast.success(`Account data saved`, {autoClose: 3000, hideProgressBar: false}),
+// );
 
-setCredentialsFx.doneData.watch(() =>
-    toast.success(`Account data saved`, {autoClose: 3000, hideProgressBar: false}),
-);
-
-messages$.on(fetchMessagesFx.doneData, (_, val) => val).reset(OrderGate.close);
+messages$
+    .on(fetchAdminMessagesFx.doneData, (state, payload) => {
+        if (
+            state.filter((msg) => msg.from === 'Customer').length !==
+                payload.filter((msg) => msg.from === 'Customer').length &&
+            state.length !== 0
+        ) {
+            console.log('play!');
+            const audio = new Audio('/audio/message.mp3');
+            audio.play();
+        }
+        return payload;
+    })
+    .reset(AdminOrderGate.close);
 
 order$.watch(console.log);
 // OrderGate.state.watch(console.log)

@@ -12,7 +12,7 @@ export default function OrderPageAdmin() {
     return (
         <>
             <Head>
-                <title>Order {typeof id === "string" ? id?.toUpperCase() : ""} | Mega Boosting</title>
+                <title>Order {typeof id === "string" ? id?.toUpperCase() : ""} (ADMIN) | Mega Boosting</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
