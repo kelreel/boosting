@@ -42,6 +42,6 @@ export async function setOrderProgress(params: {
     id: string;
     progress: number;
 }): Promise<OrderDocument<any>> {
-    const path = `/admin/orders/${params.id}/status`;
+    const path = `/admin/orders/${params.id}/progress`;
     return (await apiClient.post(path, {progress: params.progress})).data;
 }

@@ -7,6 +7,8 @@ import { AdminOrderInfo } from './OrderInfo';
 import { AdminOrderPayment } from './Payment';
 import {AdminOrderCredentials} from "components/pages/admin/AdminOrderPage/Credentials";
 import { AdminOrderGate, state$ } from './model';
+import SetOrderStatus from "components/pages/admin/AdminOrderPage/SetStatus";
+import SetOrderProgress from "components/pages/admin/AdminOrderPage/SetProgress";
 
 export const AdminOrderPage = ({id}: {id: string}) => {
     const state = useStore(state$);
@@ -26,6 +28,8 @@ export const AdminOrderPage = ({id}: {id: string}) => {
                 <section className={styles.order}>
                     <div className={styles.left}>
                         <AdminOrderInfo />
+                        <SetOrderStatus />
+                        <SetOrderProgress />
                     </div>
                     <div className={styles.right}>
                         <AdminOrderPayment />
