@@ -39,6 +39,11 @@ export default function AdminHeader() {
                                 <a>Orders</a>
                             </Link>
                         </li>
+                        <li>
+                            <Link href={ADMIN_ROUTE.USERS}>
+                                <a>Users</a>
+                            </Link>
+                        </li>
                     </ul>
                 </nav>
             )}

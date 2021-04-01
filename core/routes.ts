@@ -9,5 +9,6 @@ export enum ROUTE {
 
 export enum ADMIN_ROUTE {
     LOGIN = '/admin/login',
-    ORDERS = '/admin/orders'
+    ORDERS = '/admin/orders',
+    USERS = '/admin/users'
 }

@@ -2,13 +2,15 @@ import React from 'react';
 import styles from './Order.module.scss';
 import {useStore} from 'effector-react';
 import {AdminOrderChat} from './Chat';
-import {sessionUser$} from "models/auth";
-import { AdminOrderInfo } from './OrderInfo';
-import { AdminOrderPayment } from './Payment';
-import {AdminOrderCredentials} from "components/pages/admin/AdminOrderPage/Credentials";
-import { AdminOrderGate, state$ } from './model';
-import SetOrderStatus from "components/pages/admin/AdminOrderPage/SetStatus";
-import SetOrderProgress from "components/pages/admin/AdminOrderPage/SetProgress";
+import {sessionUser$} from 'models/auth';
+import {AdminOrderInfo} from './OrderInfo';
+import {AdminOrderPayment} from './Payment';
+import {AdminOrderCredentials} from 'components/pages/admin/AdminOrderPage/Credentials';
+import {AdminOrderGate, state$} from './model';
+import SetOrderStatus from 'components/pages/admin/AdminOrderPage/SetStatus';
+import SetOrderProgress from 'components/pages/admin/AdminOrderPage/SetProgress';
+import {SetOrderBooster} from 'components/pages/admin/AdminOrderPage/SetBooster';
+import {UserRole} from 'types/auth';
 
 export const AdminOrderPage = ({id}: {id: string}) => {
     const state = useStore(state$);
@@ -21,7 +23,9 @@ export const AdminOrderPage = ({id}: {id: string}) => {
                 <span>
                     Order: <span className={styles.id}>{id}</span>
                 </span>
-                <p style={{color: '#ffa722'}}>You view this order as {user?.role} ({user?.login})</p>
+                <p style={{color: '#ffa722'}}>
+                    You view this order as {user?.role} ({user?.login})
+                </p>
             </div>
 
             {state.order && (
@@ -30,6 +34,9 @@ export const AdminOrderPage = ({id}: {id: string}) => {
                         <AdminOrderInfo />
                         <SetOrderStatus />
                         <SetOrderProgress />
+                        {(user.role === UserRole.admin || user.role === UserRole.manager) && (
+                            <SetOrderBooster />
+                        )}
                     </div>
                     <div className={styles.right}>
                         <AdminOrderPayment />

@@ -2,15 +2,17 @@ import {combine, createDomain, createEffect, merge, sample} from 'effector';
 import {createGate} from 'effector-react';
 import {createTableModel} from 'core/hooks/table';
 import {PaginationContent} from 'types/api';
-import {fetchAdminOrders} from 'api/admin/orders';
-import {OrderDocument} from 'types/orders';
-import {FetchOrdersAdminRequest} from 'types/Apex';
+import {UserListRawRow} from 'types/users';
+import {fetchAdminUsers} from 'api/admin/users';
 
-const domain = createDomain('OrdersDomain');
+const domain = createDomain('UsersDomain');
 
-export const Gate = createGate('OrdersGate');
-const fetchDataFx = createEffect<FetchOrdersAdminRequest, PaginationContent<OrderDocument<any>>>({
-    handler: fetchAdminOrders,
+export const Gate = createGate('UsersGate');
+const fetchDataFx = createEffect<
+    {page: number; pageSize: number},
+    PaginationContent<UserListRawRow>
+>({
+    handler: fetchAdminUsers,
 });
 
 export const {page$, pageChanged, pageSize$, pageSizeChanged} = createTableModel({
@@ -18,7 +20,7 @@ export const {page$, pageChanged, pageSize$, pageSizeChanged} = createTableModel
     defaultPageSize: 10,
 });
 
-export const data$ = domain.createStore<OrderDocument<any>[]>([]);
+export const data$ = domain.createStore<UserListRawRow[]>([]);
 export const totalCount$ = domain.createStore<number>(0);
 export const totalPages$ = domain.createStore<number>(1);
 

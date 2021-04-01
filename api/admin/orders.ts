@@ -1,7 +1,7 @@
 import {FetchOrdersAdminRequest, OrderStatusEnum} from 'types/Apex';
 import {PaginationContent} from 'types/api';
 import {apiClient} from 'core/apiClient';
-import {ChatMessage, OrderDocument} from 'types/orders';
+import {BoosterItem, ChatMessage, OrderDocument} from 'types/orders';
 
 export async function fetchAdminOrders({
     page,
@@ -45,3 +45,16 @@ export async function setOrderProgress(params: {
     const path = `/admin/orders/${params.id}/progress`;
     return (await apiClient.post(path, {progress: params.progress})).data;
 }
+
+export const getBoosters = async (): Promise<BoosterItem[]> => {
+    const path = `/users/boosters`;
+    return (await apiClient.get(path)).data as BoosterItem[];
+};
+
+export const setOrderBooster = async (params: {
+    id: string;
+    booster_id: string;
+}): Promise<OrderDocument<any>> => {
+    const path = `/admin/orders/${params.id}/booster`;
+    return (await apiClient.post(path, {booster_id: params.booster_id})).data;
+};

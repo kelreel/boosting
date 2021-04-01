@@ -26,3 +26,8 @@ export type ChatMessage = {
     message: String,
     date: Date;
 }
+
+export type BoosterItem = {
+    _id: string;
+    login: string;
+}
