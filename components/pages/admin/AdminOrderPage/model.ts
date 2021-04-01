@@ -12,13 +12,15 @@ import {createGate} from 'effector-react';
 import {BoosterItem, ChatMessage, OrderDocument} from 'types/orders';
 import {
     fetchAdminOrder,
-    fetchChatAdminMessages, getBoosters,
-    sendChatAdminMessage, setOrderBooster,
+    fetchChatAdminMessages,
+    getBoosters,
+    sendChatAdminMessage,
+    setOrderBooster,
     setOrderProgress,
-    setOrderStatus
+    setOrderStatus,
 } from 'api/admin/orders';
-import {OrderStatusEnum} from "types/Apex";
-import { toast } from 'react-toastify';
+import {OrderStatusEnum} from 'types/Apex';
+import {toast} from 'react-toastify';
 
 export const AdminOrderGate = createGate<{id: string}>();
 export const SetBoosterGate = createGate<{id: string}>();
@@ -33,28 +35,28 @@ const sendAdminMessageFx = createEffect<{id: string; message: string}, any>();
 sendAdminMessageFx.use(sendChatAdminMessage);
 
 const setOrderStatusFx = createEffect<{id: string; status: OrderStatusEnum}, OrderDocument<any>>();
-setOrderStatusFx.use(setOrderStatus)
+setOrderStatusFx.use(setOrderStatus);
 
-const setOrderProgressFx = createEffect<{id: string; progress: number;}, OrderDocument<any>>();
-setOrderProgressFx.use(setOrderProgress)
+const setOrderProgressFx = createEffect<{id: string; progress: number}, OrderDocument<any>>();
+setOrderProgressFx.use(setOrderProgress);
 
 const getBoostersFx = createEffect<any, BoosterItem[]>();
 getBoostersFx.use(getBoosters);
 
-const setBoosterFx = createEffect<{id: string; booster_id: string;}, OrderDocument<any>>();
+const setBoosterFx = createEffect<{id: string; booster_id: string}, OrderDocument<any>>();
 setBoosterFx.use(setOrderBooster);
 
 const orderChanged = createEvent<OrderDocument<any> | null>();
 export const order$ = restore(orderChanged, null);
 
 const messages$ = createStore<ChatMessage[]>([]);
-export const boosters$ = createStore<BoosterItem[]>([])
+export const boosters$ = createStore<BoosterItem[]>([]);
 
 // export const setAccount = createEvent<{id: string; email: string; password: string}>();
 export const sendChatMessage = createEvent<{id: string; message: string}>();
 export const setOrderStatusEvent = createEvent<{id: string; status: OrderStatusEnum}>();
 export const setOrderProgressEvent = createEvent<{id: string; progress: number}>();
-export const setBoosterEvent = createEvent<{id: string; booster_id: string;}>();
+export const setBoosterEvent = createEvent<{id: string; booster_id: string}>();
 
 export const state$ = combine({
     order: order$,
@@ -111,8 +113,13 @@ sample({
     target: fetchAdminMessagesFx,
 });
 
-order$.on(fetchAdminOrderFx.doneData, (_, order) => order).reset(AdminOrderGate.close);
-boosters$.on(getBoostersFx.doneData, (_, data) => data).reset(SetBoosterGate.close)
+order$
+    .on(fetchAdminOrderFx.doneData, (_, order) => order)
+    .on(setOrderProgressFx.doneData, (_, data) => data)
+    .on(setOrderStatusFx.doneData, (_, data) => data)
+    .on(setBoosterFx.doneData, (_, data) => data)
+    .reset(AdminOrderGate.close);
+boosters$.on(getBoostersFx.doneData, (_, data) => data).reset(SetBoosterGate.close);
 
 setOrderStatusFx.doneData.watch(() =>
     toast.success(`Status saved`, {autoClose: 3000, hideProgressBar: false}),
