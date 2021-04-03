@@ -7,3 +7,12 @@ export type UserListRawRow = {
     role: UserRole;
     createdAt: Date;
 }
+
+export type UserInfo = {
+    _id: string;
+    login: string;
+    email?: string;
+    role: UserRole;
+    createdAt: Date;
+}
+

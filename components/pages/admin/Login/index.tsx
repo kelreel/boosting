@@ -1,23 +1,32 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import {doLogin} from "models/auth";
+import {doLogin, isAuth$} from "models/auth";
+import styles from './Login.module.scss';
+import {useRouter} from 'next/router';
+import {useStore} from "effector-react";
+import {ADMIN_ROUTE} from "core/routes";
 
 export const Login = () => {
     const { register, handleSubmit } = useForm();
+    const router = useRouter()
+    const auth = useStore(isAuth$);
+    if (auth) {
+        router.push(ADMIN_ROUTE.ORDERS);
+    }
     const onSubmit = (data) => {
         doLogin({login: data.login, password: data.password});
     }
 
-    return <div>
-        <h2>Login</h2>
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="field">
+    return <div className={styles.container}>
+        <h2>Sign in</h2>
+        <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+            <div className={styles.field}>
                 <p>Login</p>
-                <input name="login" ref={register} type="text"/>
+                <input required name="login" placeholder="mega_booster" ref={register} type="text"/>
             </div>
-            <div className="field">
-                <p>Login</p>
-                <input name="password" ref={register} type="text"/>
+            <div className={styles.field}>
+                <p>Password</p>
+                <input required name="password" placeholder="password" ref={register} type="password"/>
             </div>
             <button>Login</button>
         </form>

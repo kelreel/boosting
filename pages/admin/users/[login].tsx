@@ -2,22 +2,22 @@ import Head from 'next/head';
 import Page from 'components/ui-kit/Page';
 import {useRouter} from "next/router";
 import AdminHeader from "components/ui-kit/admin/AdminHeader/AdminHeader";
-import {AdminOrderPage} from "components/pages/admin/AdminOrderPage";
+import {UserProfile} from "components/pages/admin/UserProfile";
 
 export default function OrderPageAdmin() {
     const router = useRouter()
-    const { id } = router.query
+    const { login } = router.query
     return (
         <>
             <Head>
-                <title>Order {typeof id === "string" ? id?.toUpperCase() : ""} (ADMIN) | Mega Boosting</title>
+                <title>{typeof login === "string" ? login?.toUpperCase() : ""} | Mega Boosting</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
             <AdminHeader />
 
             <Page>
-                <AdminOrderPage id={id as string} />
+                <UserProfile login={login as string} />
             </Page>
         </>
     );

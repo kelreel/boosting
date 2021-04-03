@@ -12,6 +12,16 @@ export async function fetchAdminOrders({
     return (await apiClient.get(path, {params})).data as PaginationContent<OrderDocument<any>>;
 }
 
+export async function fetchUserOrders(param: {
+    _id: string,
+    page: number,
+    pageSize: number
+}): Promise<PaginationContent<OrderDocument<any>>> {
+    const path = `/users/${param._id}/orders`;
+    const params = {page: param.page, pageSize: param.pageSize};
+    return (await apiClient.get(path, {params})).data as PaginationContent<OrderDocument<any>>;
+}
+
 export async function fetchAdminOrder(params: {id: string}): Promise<OrderDocument<any>> {
     const path = `/admin/orders/${params.id}`;
     return (await apiClient.get(path)).data as OrderDocument<any>;

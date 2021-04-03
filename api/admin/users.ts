@@ -1,6 +1,6 @@
 import { apiClient } from "core/apiClient";
 import {PaginationContent} from "types/api";
-import {UserListRawRow} from "types/users";
+import {UserInfo, UserListRawRow} from "types/users";
 
 export async function fetchAdminUsers({
     page,
@@ -12,4 +12,8 @@ export async function fetchAdminUsers({
     const path = '/users';
     const params = {page, pageSize};
     return (await apiClient.get(path, {params})).data as PaginationContent<UserListRawRow>;
+}
+
+export const fetchUser = async (params: {login: string}): Promise<UserInfo> => {
+    return (await apiClient.get(`/users/${params.login}`)).data as UserInfo;
 }

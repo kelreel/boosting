@@ -12,3 +12,12 @@ export async function fetchAuthInfo({login, password}: AuthRequest): Promise<Aut
 
     return data;
 }
+
+export async function registerUser(params: {login: string, password: string; email: string;}): Promise<AuthData> {
+    const path = '/users';
+    const response = (await apiClient.post(path, params)).data as AuthResponse;
+    const data = jwt_decode(response.token) as AuthData;
+    TokenStorage.token = response.token;
+
+    return data;
+}

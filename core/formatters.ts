@@ -31,3 +31,8 @@ export function formatNumber(
 
     return numberFormatter.format(temp);
 }
+
+export const formatDate = (d) => {
+    let date = new Date(Date.parse(d));
+    return date.toLocaleString()
+}

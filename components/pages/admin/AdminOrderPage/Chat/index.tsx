@@ -16,8 +16,16 @@ export const AdminOrderChat = () => {
         reset();
     };
 
-    const chatRef = useRef(null);
-    const lastMsgRef = useRef(null);
+    const chatRef = useRef(null)
+    const lastMsgRef = useRef(null)
+    const prevMsgLength = useRef<number>();
+
+    useEffect(() => {
+        if (prevMsgLength.current !== state.messages.length) {
+            prevMsgLength.current = state.messages.length;
+            lastMsgRef.current.scrollIntoView({behavior: 'smooth'});
+        }
+    },[state.messages])
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -25,10 +33,6 @@ export const AdminOrderChat = () => {
         }, 5000);
         return () => clearInterval(interval);
     }, []);
-
-    useEffect(() => {
-        lastMsgRef.current.scrollIntoView({behavior: 'smooth'});
-    }, [state.messages]);
 
     return (
         <div className={styles.container}>

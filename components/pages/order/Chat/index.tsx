@@ -14,15 +14,19 @@ export const Chat = () => {
 
     const chatRef = useRef(null)
     const lastMsgRef = useRef(null)
+    const prevMsgLength = useRef<number>();
 
     useEffect(() => {
-        lastMsgRef.current.scrollIntoView({behavior: 'smooth'});
+        if (prevMsgLength.current !== state.messages.length) {
+            prevMsgLength.current = state.messages.length;
+            lastMsgRef.current.scrollIntoView({behavior: 'smooth'});
+        }
     },[state.messages])
 
     useEffect(() => {
         const interval = setInterval(() => {
             fetchMessagesFx({id: state.order._id});
-        }, 3000);
+        }, 5000);
         return () => clearInterval(interval);
     }, []);
 
