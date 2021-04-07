@@ -14,7 +14,7 @@ export const SetOrderBooster = () => {
     const {order, boosters} = useStore(state$);
     const {register, handleSubmit} = useForm({
         defaultValues: {
-            status: boosters.find((val) => val._id === order.booster_id)?.login,
+            status: boosters.find((val) => val._id === order.booster)?.login,
         },
     });
 
@@ -33,8 +33,8 @@ export const SetOrderBooster = () => {
                     Current booster:{' '}
                     <strong>
                         {' '}
-                        {order.booster_id
-                            ? boosters.find((val) => val._id === order.booster_id)?.login
+                        {order.booster
+                            ? boosters.find((val) => val._id === order.booster)?.login
                             : 'Not set'}
                     </strong>
                 </p>

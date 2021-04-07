@@ -2,7 +2,7 @@ import {ApexOrderTypeEnum, GameEnum, OrderStatusEnum} from './Apex';
 
 export type OrderDocument<D> = {
     _id: string;
-    booster_id?: string | null;
+    booster?: string | any;
     user: {
         email: string; // !!
         _id?: string | null;
