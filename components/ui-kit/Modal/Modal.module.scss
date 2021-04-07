@@ -5,11 +5,12 @@
   transform: translate(-50%, -50%);
   border: 1px solid #c4c4c4;
   border-radius: 5px;
+  outline: none;
 }
 
 .container {
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: column nowrap;
   background-color: #1c1c1c;
-  margin: 0 15px;
+  padding: 5px 20px;
 }
