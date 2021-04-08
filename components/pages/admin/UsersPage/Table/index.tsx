@@ -44,9 +44,9 @@ export default function UsersTable() {
     };
 
     return (
-        <>
+        <div style={{width: '100%', maxWidth: '1000px'}}>
             <Gate />
             <Table data={data} columns={columns} pagination={pagination} isLoading={isLoading} />
-        </>
+        </div>
     );
 }

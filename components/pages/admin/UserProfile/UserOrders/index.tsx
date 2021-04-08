@@ -5,6 +5,10 @@ import {formatNumber} from 'core/formatters';
 import Link from 'next/link';
 import {state$, Gate, pageSizeChanged, pageChanged} from './model';
 import {ADMIN_ROUTE} from 'core/routes';
+import Badge from "components/ui-kit/Badge";
+import {OrderStatusColor} from "types/orders";
+import {OrderStatusEnum} from "types/Apex";
+import ProgressBar from "@ramonak/react-progress-bar";
 
 const columns = [
     {
@@ -21,6 +25,28 @@ const columns = [
     {
         Header: 'Status',
         accessor: 'status',
+        Cell: ({row: {original}}) => {
+            return (
+                <div style={{display: 'flex', flexFlow: 'column nowrap', alignItems: 'center'}}>
+                    <Badge type={OrderStatusColor.get(original.status)}>
+                        <span style={{textAlign: 'center', fontWeight: 500, fontSize: '12px'}}>
+                            {original.status}
+                        </span>
+                    </Badge>
+                    {original.status === OrderStatusEnum.IN_PROGRESS && (
+                        <ProgressBar
+                            margin="5px 0px 0px 0px"
+                            height="8px"
+                            width="90px"
+                            completed={original.progress}
+                            bgColor="#2aa940"
+                            baseBgColor="#c1c1c1"
+                            isLabelVisible={false}
+                        />
+                    )}
+                </div>
+            );
+        },
     },
     {
         Header: 'Price',
@@ -59,7 +85,7 @@ export function UserOrdersTable({id}: {id: string}) {
     };
 
     return (
-        <>
+        <div style={{maxWidth: '1200px'}}>
             <Gate id={id} />
             {data.length === 0 ? (
                 <h2 style={{textAlign: 'center'}}>User not have orders</h2>
@@ -71,6 +97,6 @@ export function UserOrdersTable({id}: {id: string}) {
                     isLoading={isLoading}
                 />
             )}
-        </>
+        </div>
     );
 }

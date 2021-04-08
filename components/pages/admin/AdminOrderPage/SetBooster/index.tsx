@@ -32,7 +32,6 @@ export const SetOrderBooster = () => {
                 <p>
                     Current booster:{' '}
                     <strong>
-                        {' '}
                         {order.booster
                             ? boosters.find((val) => val._id === order.booster)?.login
                             : 'Not set'}

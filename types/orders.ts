@@ -31,3 +31,13 @@ export type BoosterItem = {
     _id: string;
     login: string;
 }
+
+
+export const OrderStatusColor = new Map<OrderStatusEnum, 'gray' | 'blue' | 'green' | 'orange' | 'red'>()
+    .set(OrderStatusEnum.CREATED, 'gray')
+    .set(OrderStatusEnum.PAID, 'orange')
+    .set(OrderStatusEnum.IN_PROGRESS, 'blue')
+    .set(OrderStatusEnum.PAUSED, 'red')
+    .set(OrderStatusEnum.COMPLETED, 'green')
+    .set(OrderStatusEnum.REFUNDED, 'gray')
+    .set(OrderStatusEnum.REJECTED, 'gray')
