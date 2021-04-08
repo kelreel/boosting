@@ -3,6 +3,7 @@ import styles from './Chat.module.scss';
 import {useStore} from 'effector-react';
 import {fetchMessagesFx, sendChatMessage, state$} from 'components/pages/order/model';
 import {useForm} from 'react-hook-form';
+import Linkify from 'react-linkify';
 
 export const Chat = () => {
     const state = useStore(state$);
@@ -12,8 +13,8 @@ export const Chat = () => {
         reset();
     };
 
-    const chatRef = useRef(null)
-    const lastMsgRef = useRef(null)
+    const chatRef = useRef(null);
+    const lastMsgRef = useRef(null);
     const prevMsgLength = useRef<number>();
 
     useEffect(() => {
@@ -21,7 +22,7 @@ export const Chat = () => {
             prevMsgLength.current = state.messages.length;
             lastMsgRef.current.scrollIntoView({behavior: 'smooth'});
         }
-    },[state.messages])
+    }, [state.messages]);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -38,18 +39,38 @@ export const Chat = () => {
                     if (msg.from === 'Customer') {
                         return (
                             <div key={index} className={styles.msgOut}>
-                                <div className={styles.from}>{new Date(msg.date).toLocaleTimeString()}</div>
+                                <div className={styles.from}>
+                                    {new Date(msg.date).toLocaleTimeString()}
+                                </div>
                                 <div className={styles.message}>
-                                    {msg.message}
+                                    <Linkify
+                                        componentDecorator={(decoratedHref, decoratedText, key) => (
+                                            <a target="blank" href={decoratedHref} key={key}>
+                                                {decoratedText}
+                                            </a>
+                                        )}
+                                    >
+                                        {msg.message}
+                                    </Linkify>
                                 </div>
                             </div>
                         );
                     } else {
                         return (
                             <div key={index} className={styles.msgIn}>
-                                <div className={styles.from}>{msg.from}, {new Date(msg.date).toLocaleTimeString()}</div>
+                                <div className={styles.from}>
+                                    {msg.from}, {new Date(msg.date).toLocaleTimeString()}
+                                </div>
                                 <div className={styles.message}>
-                                    {msg.message}
+                                    <Linkify
+                                        componentDecorator={(decoratedHref, decoratedText, key) => (
+                                            <a target="blank" href={decoratedHref} key={key}>
+                                                {decoratedText}
+                                            </a>
+                                        )}
+                                    >
+                                        {msg.message}
+                                    </Linkify>
                                 </div>
                             </div>
                         );

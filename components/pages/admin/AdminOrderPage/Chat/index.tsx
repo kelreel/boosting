@@ -6,6 +6,7 @@ import {
     sendChatMessage,
     fetchAdminMessagesFx,
 } from 'components/pages/admin/AdminOrderPage/model';
+import Linkify from 'react-linkify';
 import {useForm} from 'react-hook-form';
 
 export const AdminOrderChat = () => {
