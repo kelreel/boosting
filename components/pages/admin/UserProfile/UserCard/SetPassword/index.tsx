@@ -25,6 +25,7 @@ const SetPassword = () => {
                 Set new password
             </button>
             <Modal isOpen={show} onClose={() => setShow(false)}>
+                <h3 style={{textAlign: 'center'}}>New password</h3>
                 <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
                     <div className={styles.field}>
                         <p>Password</p>

@@ -4,7 +4,8 @@ import {useStore} from 'effector-react';
 import {doLogout, isAuth$, sessionUser$} from 'models/auth';
 import {useRouter} from 'next/router';
 import Link from 'next/link';
-import {ADMIN_ROUTE, ROUTE} from 'core/routes';
+import {ADMIN_ROUTE} from 'core/routes';
+import {UserRole} from 'types/auth';
 
 export default function AdminHeader() {
     const isAuth = useStore(isAuth$);
@@ -24,8 +25,10 @@ export default function AdminHeader() {
                     <>
                         <div className={styles.meta}>
                             <div className={styles.login}>
-                                Hello, {user.login}!{' '}
-                                <span className={styles.role}>({user.role})</span>
+                                <span className={styles.role}>{user.role}: </span>
+                                <Link href={`${ADMIN_ROUTE.USERS}/${user.login}`}>
+                                    {user.login}
+                                </Link>
                             </div>
                             <button className={styles.logout} onClick={logout}>
                                 Logout
@@ -47,9 +50,16 @@ export default function AdminHeader() {
                                 <a>Orders</a>
                             </Link>
                         </li>
+                        {[UserRole.manager, UserRole.admin].includes(user.role) && (
+                            <li>
+                                <Link href={ADMIN_ROUTE.USERS}>
+                                    <a>Users</a>
+                                </Link>
+                            </li>
+                        )}
                         <li>
-                            <Link href={ADMIN_ROUTE.USERS}>
-                                <a>Users</a>
+                            <Link href={`${ADMIN_ROUTE.USERS}/${user.login}`}>
+                                <a>My profile</a>
                             </Link>
                         </li>
                     </ul>

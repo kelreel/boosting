@@ -35,6 +35,7 @@
 .meta {
     display: flex;
     flex-flow: row nowrap;
+    align-items: center;
 
     .login {
     }
@@ -45,6 +46,17 @@
 
     .logout {
         margin-left: 20px;
+
+        background-color: #131313;
+        color: #fff;
+        outline: none;
+        border: 1px solid #a4a4a4;
+        padding: 10px 15px;
+        cursor: pointer;
+        border-radius: 5px;
+        &:hover {
+            background-color: #101010;
+        }
     }
 }
 

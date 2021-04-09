@@ -1,6 +1,7 @@
 import {apiClient} from 'core/apiClient';
 import {PaginationContent} from 'types/api';
 import {UserInfo, UserListRawRow} from 'types/users';
+import {UserRole} from "types/auth";
 
 export async function fetchAdminUsers({
     page,
@@ -20,5 +21,10 @@ export const fetchUser = async (params: {login: string}): Promise<UserInfo> => {
 
 export const changePassword = async (params: {login: string; password: string}): Promise<any> => {
     return (await apiClient.post(`/users/${params.login}/password`, {password: params.password}))
+        .data;
+};
+
+export const changeRole = async (params: {login: string; role: UserRole}): Promise<any> => {
+    return (await apiClient.post(`/users/${params.login}/role`, {role: params.role}))
         .data;
 };

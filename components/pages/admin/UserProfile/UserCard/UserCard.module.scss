@@ -27,3 +27,14 @@
     justify-content: center;
     align-items: flex-start;
 }
+
+.actions {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+
+    button + button {
+        margin-left: 8px;
+    }
+}
