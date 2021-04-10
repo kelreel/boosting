@@ -6,6 +6,7 @@ import {OrderInfo} from 'components/pages/order/OrderInfo';
 import {Payment} from 'components/pages/order/Payment';
 import {Credentials} from 'components/pages/order/Credentials';
 import {Chat} from './Chat';
+import {OrderStatusEnum} from 'types/Apex';
 
 export const OrderPage = ({id}: {id: string}) => {
     const state = useStore(state$);
@@ -25,7 +26,7 @@ export const OrderPage = ({id}: {id: string}) => {
                         <OrderInfo />
                     </div>
                     <div className={styles.right}>
-                        <Payment />
+                        {state.order.status === OrderStatusEnum.CREATED && <Payment />}
                         <Credentials />
                         <Chat />
                     </div>

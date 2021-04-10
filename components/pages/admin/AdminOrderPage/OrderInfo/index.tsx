@@ -72,4 +72,4 @@ const ApexRankDetails = ({details}: {details: ApexRankOrderDetails}) => {
             )}
         </div>
     );
-};
+}

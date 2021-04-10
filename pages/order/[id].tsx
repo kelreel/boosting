@@ -3,6 +3,7 @@ import Header from 'components/ui-kit/Header';
 import Page from 'components/ui-kit/Page';
 import {OrderPage} from "components/pages/order";
 import {useRouter} from "next/router";
+import 'components/pages/order/model/init'
 
 export default function LandingOrderPage() {
     const router = useRouter()
