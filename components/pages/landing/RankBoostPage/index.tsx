@@ -4,7 +4,7 @@ import {OrderForm} from './OrderForm';
 import {RankBoostCalculator} from './Calculator';
 import {Gate} from './model';
 import {Features} from './Features';
-import {Faq} from './Faq';
+import {Faq} from '../blocks/Faq';
 
 export const RankBoostCalc = () => {
     return (

@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Header from 'components/ui-kit/Header';
 import Page from 'components/ui-kit/Page';
 import {RankBoostCalc} from 'components/pages/landing/RankBoostPage';
+import Chatra from 'core/Chatra';
 
 export default function ApexRankBoost() {
     return (
@@ -16,6 +17,8 @@ export default function ApexRankBoost() {
             <Page>
                 <RankBoostCalc />
             </Page>
+
+            <Chatra />
         </>
     );
 }

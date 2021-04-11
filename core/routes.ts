@@ -1,10 +1,10 @@
 export enum ROUTE {
     HOME = '/',
-    APEX = '/apex',
-    RANK_BOOST = '/apex/rank-boost',
-    KILL_BOOST = '/apex/kill-boost',
-    ACHIEVEMENTS = '/apex/achievements-boost',
-    ORDER = '/apex/order'
+    APEX = '/apex-legends',
+    RANK_BOOST = '/apex-legends/rank-boost',
+    KILL_BOOST = '/apex-legends/kill-boost',
+    ACHIEVEMENTS = '/apex-legends/achievements-boost',
+    ORDER = '/order'
 }
 
 export enum ADMIN_ROUTE {

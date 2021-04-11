@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './OrderForm.module.scss';
 import {useStore} from 'effector-react';
-import {createOrder, createOrderFx, emailChanged, rankStore$, streamingChanged} from '../model';
+import {createOrder, emailChanged, rankStore$, streamingChanged} from '../model';
 import {getDevisionString} from '../utils';
 import isEmail from 'validator/lib/isEmail';
 import {Switch} from "components/ui-kit/controls/Switch";
