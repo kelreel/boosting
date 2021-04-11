@@ -3,8 +3,9 @@ import styles from './Page.module.scss';
 import {OrderForm} from './OrderForm';
 import {RankBoostCalculator} from './Calculator';
 import {Gate} from './model';
-import {Features} from './Features';
-import {Faq} from '../blocks/Faq';
+import {Features} from '../blocks/Features';
+import {ApexFaq} from '../blocks/Apex/ApexFaq';
+import {ApexRankContent} from 'components/pages/landing/blocks/Apex/ApexRankContent';
 
 export const RankBoostCalc = () => {
     return (
@@ -16,7 +17,8 @@ export const RankBoostCalc = () => {
                 <OrderForm />
             </section>
             <Features />
-            <Faq />
+            <ApexRankContent />
+            <ApexFaq />
         </div>
     );
 };
