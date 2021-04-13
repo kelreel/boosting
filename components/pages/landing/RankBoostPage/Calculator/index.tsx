@@ -58,7 +58,7 @@ export const RankBoostCalculator = () => {
             <div className={styles.ranksContainer}>
                 <div className={styles.rank}>
                     <RankIcon rank={state.from} width={60} />
-                    <h3>Current Rank</h3>
+                    <p className={styles.rankTitle}>Current Rank</p>
                     <div className={styles.rankItem}>
                         <button
                             className={styles.rankInputBtn}
@@ -90,7 +90,7 @@ export const RankBoostCalculator = () => {
                 </div>
                 <div className={styles.rank}>
                     <RankIcon rank={state.to} width={60} />
-                    <h3>Desired Rank</h3>
+                    <p className={styles.rankTitle}>Desired Rank</p>
                     <div className={styles.rankItem}>
                         <button
                             className={styles.rankInputBtn}

@@ -4,7 +4,7 @@ import React from 'react';
 export const ApexRankContent = () => (
     <section className={styles.content}>
         <h2 className={styles.title}>What is Apex Rank boosting?</h2>
-        <div className={styles.container}>
+        <article className={styles.container}>
             <p>
                 We offer a professional Apex Boosting Service. A professional player plays for you,
                 you get a high rating and can play with the top players. In addition to getting a
@@ -19,6 +19,6 @@ export const ApexRankContent = () => (
                 administrators, as boosting is not welcome. With us, you get a guarantee that the
                 service will be provided in full.{' '}
             </p>
-        </div>
+        </article>
     </section>
 );

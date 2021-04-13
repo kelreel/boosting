@@ -4,7 +4,7 @@ import React from 'react';
 export const ApexKillsContent = () => (
     <section className={styles.content}>
         <h2 className={styles.title}>What is Apex Legends Kills boosting?</h2>
-        <div className={styles.container}>
+        <article className={styles.container}>
             <p>
                 Increasing your Apex Legends kill level is a very important metric - it shows up in
                 your player profile! Every Apex Legends pump champion has different characteristics,
@@ -19,6 +19,6 @@ export const ApexKillsContent = () => (
                 professional gas pedals. We can guarantee maximum performance and statistics when
                 you order Kill Boost from our company.
             </p>
-        </div>
+        </article>
     </section>
 );

@@ -7,13 +7,13 @@ export default function Header () {
         <div className={styles.logo}>
             <Link href={ROUTE.HOME}><a>Mega Boosting</a></Link>
         </div>
-        <nav  className={styles.navigation}>
+        <nav className={styles.navigation}>
             <ul>
                 <li>
                     <Link href={ROUTE.RANK_BOOST}><a>Rank boosting</a></Link>
                 </li>
                 <li>
-                    <Link href={ROUTE.KILLS_BOOST}><a>Kill boosting</a></Link>
+                    <Link href={ROUTE.KILLS_BOOST}><a>Kills boosting</a></Link>
                 </li>
                 <li>
                     <Link href={ROUTE.ACHIEVEMENTS}><a>Achievements</a></Link>

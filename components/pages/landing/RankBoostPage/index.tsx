@@ -11,10 +11,14 @@ export const RankBoost = () => {
     return (
         <div className={styles.pageContainer}>
             <Gate />
-            <h1 className={styles.title}>Apex Legends Rank Boosting</h1>
             <section className={styles.orderContainer}>
-                <RankBoostCalculator />
-                <OrderForm />
+                <div className={styles.heading}>
+                    <h1 className={styles.title}>Apex Legends Rank Boosting</h1>
+                </div>
+                <div className={styles.calculator}>
+                    <RankBoostCalculator />
+                    <OrderForm />
+                </div>
             </section>
             <Features />
             <ApexRankContent />
