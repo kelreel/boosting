@@ -21,6 +21,14 @@ export interface CreateRankOrderRequest {
     streaming: boolean;
 }
 
+export interface CreateKillsOrderRequest {
+    killsCount: number;
+    platform: ApexPlatformEnum;
+    region: ApexRegionEnum;
+    email: string;
+    streaming: boolean;
+}
+
 export enum OrderStatusEnum {
     CREATED = 'CREATED',
     PAID = 'PAID',
@@ -37,7 +45,7 @@ export enum GameEnum {
 
 export enum ApexOrderTypeEnum {
     RANK_BOOST = 'Rank Boost',
-    KILL_BOOST = 'Kill Boost',
+    KILLS_BOOST = 'Kills Boost',
     ACHIEVEMENTS = 'Achievements',
 }
 
@@ -57,6 +65,19 @@ export enum ApexRegionEnum {
 export type ApexRankOrderDetails = {
     fromRank: number;
     toRank: number;
+    platform: ApexPlatformEnum;
+    region: ApexRegionEnum;
+    streaming: boolean;
+    credentials:
+        | {
+        email: string;
+        password: string;
+    }
+        | boolean;
+};
+
+export type ApexKillsOrderDetails = {
+    killsCount: number;
     platform: ApexPlatformEnum;
     region: ApexRegionEnum;
     streaming: boolean;

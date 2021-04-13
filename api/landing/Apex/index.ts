@@ -1,8 +1,22 @@
-import {apiClient} from "core/apiClient";
-import {CreateRankOrderRequest, ApexRankOrderDetails} from "types/Apex";
-import { OrderDocument } from "types/orders";
+import {apiClient} from 'core/apiClient';
+import {
+    CreateRankOrderRequest,
+    ApexRankOrderDetails,
+    CreateKillsOrderRequest,
+    ApexKillsOrderDetails,
+} from 'types/Apex';
+import {OrderDocument} from 'types/orders';
 
-export async function createRankOrder(body: CreateRankOrderRequest): Promise<OrderDocument<ApexRankOrderDetails>> {
+export async function createRankOrder(
+    body: CreateRankOrderRequest,
+): Promise<OrderDocument<ApexRankOrderDetails>> {
     const path = '/landing/apex/rank';
     return (await apiClient.post(path, body)).data as OrderDocument<ApexRankOrderDetails>;
+}
+
+export async function createKillsOrder(
+    body: CreateKillsOrderRequest,
+): Promise<OrderDocument<ApexKillsOrderDetails>> {
+    const path = '/landing/apex/kills';
+    return (await apiClient.post(path, body)).data as OrderDocument<ApexKillsOrderDetails>;
 }

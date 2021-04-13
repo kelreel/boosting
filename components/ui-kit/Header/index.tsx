@@ -13,7 +13,7 @@ export default function Header () {
                     <Link href={ROUTE.RANK_BOOST}><a>Rank boosting</a></Link>
                 </li>
                 <li>
-                    <Link href={ROUTE.KILL_BOOST}><a>Kill boosting</a></Link>
+                    <Link href={ROUTE.KILLS_BOOST}><a>Kill boosting</a></Link>
                 </li>
                 <li>
                     <Link href={ROUTE.ACHIEVEMENTS}><a>Achievements</a></Link>

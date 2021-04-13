@@ -2,7 +2,7 @@ export enum ROUTE {
     HOME = '/',
     APEX = '/apex-legends',
     RANK_BOOST = '/apex-legends/rank-boost',
-    KILL_BOOST = '/apex-legends/kill-boost',
+    KILLS_BOOST = '/apex-legends/kills-boost',
     ACHIEVEMENTS = '/apex-legends/achievements-boost',
     ORDER = '/order'
 }

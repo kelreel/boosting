@@ -71,6 +71,6 @@ describe('Rank boost', () => {
     it ('Order box contains platform', () => {
         cy.get('[data-cy=platform-selector]').select('XBOX');
 
-        cy.get('[data-cy=order-type]').should('contain.text', 'XBOX')
+        cy.get('[data-cy=orders-type]').should('contain.text', 'XBOX')
     })
 })

@@ -74,7 +74,7 @@ sample({
 })
 
 createOrderFx.doneData.watch((order) => {
-    document.location.pathname = `order/${order._id}`;
+    document.location.pathname = `orders/${order._id}`;
 })
 
 // price$.watch(console.log)

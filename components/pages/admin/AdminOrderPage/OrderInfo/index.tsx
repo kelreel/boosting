@@ -3,7 +3,7 @@ import styles from './Common.module.scss';
 import {useStore} from 'effector-react';
 import {state$} from 'components/pages/admin/AdminOrderPage/model';
 import {RankIcon} from 'components/pages/landing/RankBoostPage/rankIcon';
-import {ApexOrderTypeEnum, ApexRankOrderDetails} from 'types/Apex';
+import {ApexKillsOrderDetails, ApexOrderTypeEnum, ApexRankOrderDetails} from 'types/Apex';
 import Badge from 'components/ui-kit/Badge';
 import {OrderStatusColor} from 'types/orders';
 import ProgressBar from '@ramonak/react-progress-bar';
@@ -19,6 +19,9 @@ export const AdminOrderInfo = () => {
             <div className={styles.details}>
                 {order.orderType === ApexOrderTypeEnum.RANK_BOOST && (
                     <ApexRankDetails details={order.details} />
+                )}
+                {order.orderType === ApexOrderTypeEnum.KILLS_BOOST && (
+                    <ApexKillsDetails details={order.details} />
                 )}
             </div>
             <div className={styles.status}>
@@ -73,3 +76,22 @@ const ApexRankDetails = ({details}: {details: ApexRankOrderDetails}) => {
         </div>
     );
 }
+
+const ApexKillsDetails = ({details}: {details: ApexKillsOrderDetails}) => {
+    return (
+        <div className={styles.apexRankDetails}>
+            <div className={styles.kills}>
+                {details.killsCount} Kills
+            </div>
+            <div className={styles.meta}>
+                <p>Platform: {details.platform}</p>
+                <p>Region: {details.region}</p>
+            </div>
+            {details.streaming && (
+                <div className={styles.meta}>
+                    <Badge type={'green'}>STREAMING</Badge>
+                </div>
+            )}
+        </div>
+    );
+};

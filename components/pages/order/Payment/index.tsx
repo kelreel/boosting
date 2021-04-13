@@ -38,7 +38,7 @@ export const Payment = () => {
                             const order_id = details.purchase_units[0].description;
                             const pp_order_id = details.id;
                             toast.success(
-                                'The payment was successful. The order status will be updated within a few minutes.',
+                                'The payment was successful. The orders status will be updated within a few minutes.',
                                 {autoClose: false},
                             );
                         });

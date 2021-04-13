@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Header from 'components/ui-kit/Header';
 import Page from 'components/ui-kit/Page';
-import {RankBoostCalc} from 'components/pages/landing/RankBoostPage';
+import {RankBoost} from 'components/pages/landing/RankBoostPage';
 import Chatra from 'core/Chatra';
 
 export default function ApexRankBoost() {
@@ -15,7 +15,7 @@ export default function ApexRankBoost() {
             <Header />
 
             <Page>
-                <RankBoostCalc />
+                <RankBoost />
             </Page>
 
             <Chatra />
