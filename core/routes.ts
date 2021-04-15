@@ -3,7 +3,7 @@ export enum ROUTE {
     APEX = '/apex-legends',
     RANK_BOOST = '/apex-legends/rank-boost',
     KILLS_BOOST = '/apex-legends/kills-boost',
-    ACHIEVEMENTS = '/apex-legends/achievements-boost',
+    ACHIEVEMENTS = '/apex-legends/achievements-badges',
     ORDER = '/order'
 }
 

@@ -3,7 +3,7 @@ import styles from './Common.module.scss';
 import {useStore} from 'effector-react';
 import {state$} from 'components/pages/order/model';
 import {RankIcon} from 'components/pages/landing/RankBoostPage/rankIcon';
-import {ApexKillsOrderDetails, ApexOrderTypeEnum, ApexRankOrderDetails} from 'types/Apex';
+import {ApexBadgesOrderDetails, ApexKillsOrderDetails, ApexOrderTypeEnum, ApexRankOrderDetails} from 'types/Apex';
 import Badge from "components/ui-kit/Badge";
 import {OrderStatusColor} from "types/orders";
 import ProgressBar from "@ramonak/react-progress-bar";
@@ -22,6 +22,9 @@ export const OrderInfo = () => {
                 )}
                 {order.orderType === ApexOrderTypeEnum.KILLS_BOOST && (
                     <ApexKillsDetails details={order.details} />
+                )}
+                {order.orderType === ApexOrderTypeEnum.ACHIEVEMENTS && (
+                    <ApexBadgesDetails details={order.details} />
                 )}
             </div>
             <div className={styles.status}>
@@ -85,3 +88,20 @@ const ApexKillsDetails = ({details}: {details: ApexKillsOrderDetails}) => {
         </div>
     );
 };
+
+const ApexBadgesDetails = ({details}: {details: ApexBadgesOrderDetails}) => {
+    return (
+        <div className={styles.apexRankDetails}>
+            <div className={styles.kills}>
+                {details.badges.map(badge => (
+                    <div key={badge.id}>{badge.name} (${badge.price})</div>
+                ))}
+            </div>
+            <div className={styles.meta}>
+                <p>Platform: {details.platform}</p>
+                <p>Region: {details.region}</p>
+            </div>
+        </div>
+    );
+};
+

@@ -3,7 +3,7 @@ import {
     CreateRankOrderRequest,
     ApexRankOrderDetails,
     CreateKillsOrderRequest,
-    ApexKillsOrderDetails,
+    ApexKillsOrderDetails, CreateBadgesOrderRequest, ApexBadgesOrderDetails,
 } from 'types/Apex';
 import {OrderDocument} from 'types/orders';
 
@@ -19,4 +19,11 @@ export async function createKillsOrder(
 ): Promise<OrderDocument<ApexKillsOrderDetails>> {
     const path = '/landing/apex/kills';
     return (await apiClient.post(path, body)).data as OrderDocument<ApexKillsOrderDetails>;
+}
+
+export async function createBadgesOrder(
+    body: CreateBadgesOrderRequest,
+): Promise<OrderDocument<ApexBadgesOrderDetails>> {
+    const path = '/landing/apex/badges';
+    return (await apiClient.post(path, body)).data as OrderDocument<ApexBadgesOrderDetails>;
 }

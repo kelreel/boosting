@@ -3,7 +3,6 @@ import styles from './OrderForm.module.scss';
 import {useStore} from 'effector-react';
 import {createOrder, emailChanged, rankStore$, streamingChanged} from '../model';
 import {getDevisionString} from '../utils';
-import isEmail from 'validator/lib/isEmail';
 import {Switch} from "components/ui-kit/controls/Switch";
 
 export const OrderForm = () => {
@@ -27,24 +26,28 @@ export const OrderForm = () => {
                     <Switch onChange={(val) => streamingChanged(val)} checked={state.streaming} />
                 </div>
             </div>
-            <div className={styles.total}>
+            <form className={styles.total} onSubmit={(e) => {
+                e.preventDefault();
+                if (!state.pending) {
+                    createOrder();
+                }
+            }}>
                 <input
                     onChange={(e) => emailChanged(e.target.value)}
                     className={styles.email}
                     type="email"
                     placeholder="your-email@mail.com"
                     data-cy="email-input"
+                    required
                 />
                 <h4 data-cy="price">${state.price} USD</h4>
                 <button
                     data-cy="checkout_btn"
-                    disabled={!isEmail(state.email) || state.price === 0}
                     className={styles.checkoutBtn}
-                    onClick={() => createOrder()}
                 >
                     Checkout
                 </button>
-            </div>
+            </form>
         </div>
     );
 };

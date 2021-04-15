@@ -33,7 +33,7 @@ export const Chat = () => {
 
     return (
         <div className={styles.container}>
-            <div className={styles.heading}>Chat</div>
+            <div className={styles.heading}>Chat with booster</div>
             <div className={styles.chat} ref={chatRef}>
                 {state.messages.map((msg, index) => {
                     if (msg.from === 'Customer') {

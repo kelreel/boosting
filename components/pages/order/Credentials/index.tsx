@@ -21,11 +21,15 @@ export const Credentials = () => {
     return (
         <div className={styles.container}>
             <div className={styles.heading}>Your game account</div>
+            <div className={styles.warning}>
+                Please do not sign in to your account until the order is complete!
+            </div>
             {order.details.credentials && !show && (
                 <div className={styles.message}>
                     <p>
                         You have already provided your account details. Re-enter them if they have
-                        changed. It is recommended to change your password after completing the order.
+                        changed. It is recommended to change your password after completing the
+                        order.
                     </p>
                     <button onClick={() => setShow(true)}>Enter again</button>
                 </div>

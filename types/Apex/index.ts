@@ -1,3 +1,5 @@
+import { Badge } from "./badges";
+
 export interface DivisionRate {
     name: string;
     from: number;
@@ -23,6 +25,14 @@ export interface CreateRankOrderRequest {
 
 export interface CreateKillsOrderRequest {
     killsCount: number;
+    platform: ApexPlatformEnum;
+    region: ApexRegionEnum;
+    email: string;
+    streaming: boolean;
+}
+
+export interface CreateBadgesOrderRequest {
+    badges: Badge[],
     platform: ApexPlatformEnum;
     region: ApexRegionEnum;
     email: string;
@@ -78,6 +88,19 @@ export type ApexRankOrderDetails = {
 
 export type ApexKillsOrderDetails = {
     killsCount: number;
+    platform: ApexPlatformEnum;
+    region: ApexRegionEnum;
+    streaming: boolean;
+    credentials:
+        | {
+        email: string;
+        password: string;
+    }
+        | boolean;
+};
+
+export type ApexBadgesOrderDetails = {
+    badges: Badge[],
     platform: ApexPlatformEnum;
     region: ApexRegionEnum;
     streaming: boolean;
