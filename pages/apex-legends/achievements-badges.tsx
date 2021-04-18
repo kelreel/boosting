@@ -2,8 +2,8 @@ import Head from 'next/head';
 import Header from 'components/ui-kit/Header';
 import Page from 'components/ui-kit/Page';
 import Chatra from 'core/Chatra';
-import {KillsBoost} from "components/pages/landing/KillsBoostPage";
 import {AchievementsBoost} from "components/pages/landing/AchievementsPage";
+import Footer from "components/ui-kit/Footer";
 
 export default function AchievementsBadgesBoost() {
     return (
@@ -19,6 +19,7 @@ export default function AchievementsBadgesBoost() {
                 <AchievementsBoost />
             </Page>
 
+            <Footer />
             <Chatra />
         </>
     );

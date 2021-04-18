@@ -5,6 +5,7 @@ import {OrderPage} from "components/pages/order";
 import {useRouter} from "next/router";
 import 'components/pages/order/model/init'
 import Chatra from "core/Chatra";
+import Footer from "components/ui-kit/Footer";
 
 export default function LandingOrderPage() {
     const router = useRouter()
@@ -22,6 +23,7 @@ export default function LandingOrderPage() {
                 <OrderPage id={id as string} />
             </Page>
 
+            <Footer />
             <Chatra />
         </>
     );
