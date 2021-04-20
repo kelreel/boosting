@@ -1,5 +1,39 @@
 .footer {
     display: flex;
     flex-flow: column wrap;
-    background-color: #ccc;
+    background-color: #101011;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+
+.disclaimer {
+    font-size: 10px;
+    text-align: center;
+    color: #9c9c9c;
+    user-select: none;
+}
+
+.content {
+    max-width: 980px;
+
+    h5 {
+        text-align: center;
+        color: #ccc;
+    }
+}
+
+.payments {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    img {
+        width: 100px;
+        user-select: none;
+        -webkit-user-drag: none;
+    }
 }
